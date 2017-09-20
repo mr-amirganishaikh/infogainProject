@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Mapping Screen</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <!--[if lt IE 9]> <script src=https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js></script> <script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script> <![endif]-->
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header class="container-fluid">
+        <div id="top-bar" class="col-xs-12">
+            <h2 class="site-title">DB Management</h2>
+        </div>
+        <div id="navigation-bar" class="col-xs-12">
+            <ul class="list-inline">
+                <li>
+                    <a href="addConnection.html" id="addConnectionLink"><i class="fa fa-plug"></i> Add Connection</a>
+                </li>
+                <li>
+                    <a href="mappingScreen.html" id="mappingScreenLink"><i class="fa fa-exchange"></i> Mapping Screen</a>
+                </li>
+                <li>
+                    <a href="thirdScreen.html" id="thirdScreenLink"><i class="fa fa-exchange"></i> Third Screen</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="clearfix"></div>
+
+    <main class="container-fluid">
+        <aside id="sidebar">
+            <ul class="sidebar-menu list-unstyled">
+                <li>
+                    <a href="javascript:void();"><i class="fa fa-server"></i> Connection</a>
+                    <ul class="sidebar-submenu list-unstyled">
+                        <li>
+                            <a href="javascript:void();"><i class="fa fa-database"></i> Oracle Database</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void();"><i class="fa fa-database"></i> SQL Server</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </aside>
+        <section id="content-pane">
+            <div class="col-md-12 card-form">
+                <div class="card-form_heading">
+                    <h2 class="card-form_title">Mapping Screen</h2>
+                </div>
+                <div class="card-form_body">
+                    <p>Select Schema</p>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="connection-source">Connection Source:</label>
+                            <select id="connection-source" class="form-control" name="connection-source">
+                                <option>--Connection Source--</option>
+                                <option>Oracle Database</option>
+                                <option>SQL Server</option>
+                                <option>MySQL</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select id="tables-source" class="form-control" name="tables-source" multiple>
+                                <option>Table 1</option>
+                                <option>Table 2</option>
+                                <option>Table 3</option>
+                                <option>Table 4</option>
+                                <option>Table 5</option>
+                                <option>Table 6</option>
+                                <option>Table 7</option>
+                                <option>Table 8</option>
+                                <option>Table 9</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="connection-source-column">Connection Source Column:</label>
+                            <select id="connection-source-column" class="form-control" name="connection-source-column">
+                                <option>--Connection Source Column--</option>
+                                <option>Column 1</option>
+                                <option>Column 2</option>
+                                <option>Column 3</option>
+                                <option>Column 4</option>
+                            </select>
+                        </div>
+                        <div class="form-group result-group">
+                            <textarea id="column-result-source" class="form-control" name="column-result-source"></textarea>
+                            <input id="checkbox-result-source" type="checkbox" name="checkbox-result-source">
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="connection-target">Connection Target:</label>
+                            <select id="connection-target" class="form-control" name="connection-target">
+                                <option>--Connection Target--</option>
+                                <option>Oracle Database</option>
+                                <option>SQL Server</option>
+                                <option>MySQL</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select id="tables-target" class="form-control" name="tables-target" multiple>
+                                <option>Table 1</option>
+                                <option>Table 2</option>
+                                <option>Table 3</option>
+                                <option>Table 4</option>
+                                <option>Table 5</option>
+                                <option>Table 6</option>
+                                <option>Table 7</option>
+                                <option>Table 8</option>
+                                <option>Table 9</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="connection-target-column">Connection Target Column:</label>
+                            <select id="connection-target-column" class="form-control" name="connection-target-column">
+                                <option>--Connection Target Column--</option>
+                                <option>Column 1</option>
+                                <option>Column 2</option>
+                                <option>Column 3</option>
+                                <option>Column 4</option>
+                            </select>
+                        </div>
+                        <div class="form-group result-group">
+                            <textarea id="column-result-target" class="form-control" name="column-result-target"></textarea>
+                            <input id="checkbox-result-target" type="checkbox" name="checkbox-result-target">
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="col-md-8">
+                        <div class="action-buttons text-right">
+                            <button type="button" class="btn btn-primary">
+                                Show &amp; Save Details
+                            </button>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </section>
+    </main>
+    <div class="clearfix"></div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#mappingScreenLink").addClass("active");
+        });
+
+    </script>
+</body>
+
+
+</html>
