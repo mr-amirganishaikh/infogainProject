@@ -67,30 +67,30 @@
                         <div class="form-group">
                             <label for="db-select">Select DB:</label>
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-server"></i></span>
+                                <span class="input-group-addon"><i class="fa fa-database"></i></span>
                                 <select id="db-select" class="form-control" name="db-select">
-                                <option>--Select DB--</option>
-                                <option>Oracle Database</option>
-                                <option>SQL Server</option>
-                                <option>MySQL</option>
-                              </select>
+                                    <option value="selectValue">--Select DB--</option>
+                                    <option value="oracleDatabase">Oracle Database</option>
+                                    <option value="sqlServer">SQL Server</option>
+                                    <option value="mySql">MySQL</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group isDBSelected">
                             <label for="hostName">Hostname:</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
                                 <input id="hostName" type="text" class="form-control" name="hostName" placeholder="Host Name">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group isDBSelected">
                             <label for="portNumber">Port Number:</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-circle-o"></i></span>
                                 <input id="portNumber" type="text" class="form-control" name="portNumber" placeholder="Port Number">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group isDBSelected">
                             <label for="serviceName">Service Name:</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-line-chart"></i></span>
@@ -123,8 +123,8 @@
     <script>
         $(document).ready(function() {
             $("#addConnectionLink").addClass("active");
-        });
-
+        });      
+        
     </script>
 </body>
 

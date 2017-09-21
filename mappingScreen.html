@@ -60,81 +60,55 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="connection-source">Connection Source:</label>
-                            <select id="connection-source" class="form-control" name="connection-source">
-                                <option>--Connection Source--</option>
-                                <option>Oracle Database</option>
-                                <option>SQL Server</option>
-                                <option>MySQL</option>
+                            <select id="connection-source" class="form-control" name="connection-source" data-target="tables-source">
+                                <option value="selectValue">--Connection Source--</option>
+                                <option value="oracleDatabase">Oracle Database</option>
+                                <option value="sqlServer">SQL Server</option>
+                                <option value="mySql">MySQL</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <select id="tables-source" class="form-control" name="tables-source" multiple>
-                                <option>Table 1</option>
-                                <option>Table 2</option>
-                                <option>Table 3</option>
-                                <option>Table 4</option>
-                                <option>Table 5</option>
-                                <option>Table 6</option>
-                                <option>Table 7</option>
-                                <option>Table 8</option>
-                                <option>Table 9</option>
+                            <select id="tables-source" class="form-control" name="tables-source" multiple data-target="connection-source-column">
                             </select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group isSourceConnectionSelected">
                             <label for="connection-source-column">Connection Source Column:</label>
                             <select id="connection-source-column" class="form-control" name="connection-source-column">
-                                <option>--Connection Source Column--</option>
-                                <option>Column 1</option>
-                                <option>Column 2</option>
-                                <option>Column 3</option>
-                                <option>Column 4</option>
+                                <option value="selectValue">--Connection Source Column--</option>
                             </select>
                         </div>
-                        <div class="form-group result-group">
+                        <!--<div class="form-group result-group isSourceConnectionSelected">
                             <textarea id="column-result-source" class="form-control" name="column-result-source"></textarea>
                             <input id="checkbox-result-source" type="checkbox" name="checkbox-result-source">
                             <div class="clearfix"></div>
-                        </div>
+                        </div>-->
                     </div>
 
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="connection-target">Connection Target:</label>
-                            <select id="connection-target" class="form-control" name="connection-target">
-                                <option>--Connection Target--</option>
-                                <option>Oracle Database</option>
-                                <option>SQL Server</option>
-                                <option>MySQL</option>
+                            <select id="connection-target" class="form-control" name="connection-target" data-target="tables-target">
+                                <option value="selectValue">--Connection Target--</option>
+                                <option value="oracleDatabase">Oracle Database</option>
+                                <option value="sqlServer">SQL Server</option>
+                                <option value="mySql">MySQL</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <select id="tables-target" class="form-control" name="tables-target" multiple>
-                                <option>Table 1</option>
-                                <option>Table 2</option>
-                                <option>Table 3</option>
-                                <option>Table 4</option>
-                                <option>Table 5</option>
-                                <option>Table 6</option>
-                                <option>Table 7</option>
-                                <option>Table 8</option>
-                                <option>Table 9</option>
+                            <select id="tables-target" class="form-control" name="tables-target" multiple data-target="connection-target-column">
                             </select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group isTargetConnectionSelected">
                             <label for="connection-target-column">Connection Target Column:</label>
                             <select id="connection-target-column" class="form-control" name="connection-target-column">
-                                <option>--Connection Target Column--</option>
-                                <option>Column 1</option>
-                                <option>Column 2</option>
-                                <option>Column 3</option>
-                                <option>Column 4</option>
+                                <option value="selectValue">--Connection Target Column--</option>
                             </select>
                         </div>
-                        <div class="form-group result-group">
+                        <!--<div class="form-group result-group isTargetConnectionSelected">
                             <textarea id="column-result-target" class="form-control" name="column-result-target"></textarea>
                             <input id="checkbox-result-target" type="checkbox" name="checkbox-result-target">
                             <div class="clearfix"></div>
-                        </div>
+                        </div>-->
                     </div>
                     <div class="clearfix"></div>
 
@@ -157,8 +131,106 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
     <script>
+        var connectionSourceValue = ["table1", "table2", "table3", "table4", "table5", "table6", "table7", "table8", "table9"];
+        var connectionSourceDetails = ["Table 1", "Table 2", "Table 3", "Table 4", "Table 5", "Table 6", "Table 7", "Table 8", "Table 9"];
+        
+        var connectionTargetValue = ["table1", "table2", "table3", "table4", "table5", "table6", "table7", "table8", "table9"];
+        var connectionTargetDetails = ["Table 1", "Table 2", "Table 3", "Table 4", "Table 5", "Table 6", "Table 7", "Table 8", "Table 9"];
+        
+        var columnSourceValue = ["column1", "column2", "column3", "column4"];
+        var columnSourceDetails = ["Column 1", "Column 2", "Column 3", "Column 4"];
+        
+        var columnTargetValue = ["column1", "column2", "column3", "column4"];
+        var columnTargetDetails = ["Column 1", "Column 2", "Column 3", "Column 4"];
+
         $(document).ready(function() {
             $("#mappingScreenLink").addClass("active");
+
+            var generateOptionsList = function(target) {
+                for (var i = 0; i < connectionSourceDetails.length; i++) {
+                    $(target).append("<option value='"+connectionSourceValue[i]+"'>"+connectionSourceDetails[i]+"</option>");
+                }
+            }
+            
+            var generateOptionsList2 = function(target) {
+                for (var i = 0; i < connectionTargetDetails.length; i++) {
+                    $(target).append("<option value='"+connectionTargetValue[i]+"'>"+connectionTargetDetails[i]+"</option>");
+                }
+            }
+            
+            var generateOptionsList3 = function(target) {
+                for (var i = 0; i < columnSourceDetails.length; i++) {
+                    $(target).append("<option value='"+columnSourceValue[i]+"'>"+columnSourceDetails[i]+"</option>");
+                }
+            }
+            
+            var generateOptionsList4 = function(target) {
+                for (var i = 0; i < columnTargetDetails.length; i++) {
+                    $(target).append("<option value='"+columnTargetValue[i]+"'>"+columnTargetDetails[i]+"</option>");
+                }
+            }
+
+            $("#connection-source").change(function() {
+                var $this = $(this);
+                var selectedValue = $this.val();
+                var target = '#' + $this.attr("data-target");
+                console.log($this, selectedValue, target);
+                if (selectedValue == 'selectValue') {
+                    $(target).empty();
+                    $("#connection-source-column").empty().fadeOut('fast');
+                } else {
+                    $(target).empty();
+                    generateOptionsList(target);
+                }
+            });
+            
+            $("#connection-target").change(function() {
+                var $this = $(this);
+                var selectedValue = $this.val();
+                var target = '#' + $this.attr("data-target");
+                console.log($this, selectedValue, target);
+                if (selectedValue == 'selectValue' || selectedValue == '') {
+                    $(target).empty();
+                    $("#connection-target-column").empty().fadeOut('fast');
+                } else {
+                    $(target).empty();
+                    generateOptionsList(target);
+                }
+            });
+            
+            
+            $("#tables-source").change(function() {
+                var $this = $(this);
+                var selectedValue = $this.val();
+                var target = '#' + $this.attr("data-target");
+                if (selectedValue == '') {
+                    $(".isSourceConnectionSelected").fadeOut('fast');
+                    $(target).empty();
+                    $(target).append("<option value='selectValue'>--Connection Source--</option>");
+                } else {
+                    $(".isSourceConnectionSelected").fadeIn('fast');
+                    $(target).empty();
+                    $(target).append("<option value='selectValue'>--Connection Source--</option>");
+                    generateOptionsList3(target);
+                }
+            });
+            
+            $("#tables-target").change(function() {
+                var $this = $(this);
+                var selectedValue = $this.val();
+                var target = '#' + $this.attr("data-target");
+                if (selectedValue == '') {
+                    $(".isTargetConnectionSelected").fadeOut('fast');
+                    $(target).empty();
+                    $(target).append("<option value='selectValue'>--Connection Target--</option>");
+                } else {
+                    $(".isTargetConnectionSelected").fadeIn('fast');
+                    $(target).empty();
+                    $(target).append("<option value='selectValue'>--Connection Target--</option>");
+                    generateOptionsList4(target);
+                }
+            });
+            
         });
 
     </script>
